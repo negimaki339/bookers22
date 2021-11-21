@@ -17,9 +17,21 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <li><a class="fas fa-home nav-link text-light" href="/"> Home</a></li>
-          <li><a class="fas fa-link nav-link text-light" href="/home/about"> About</a></li>
+          <% if user_signed_in? %>
+          <li><a class="fas fa-link nav-link text-light" href="uesrs/show"> Users</a></li>
+          <% else %>
+          <li><a class="fas fa-link nav-link text-light" href="about"> About</a></li>
+          <% end %>
+          <% if user_signed_in? %>
+           <li><a class="fas fa-link nav-link text-light" href="books/index"> Books</a></li>
+           <% else %>
           <li><a class="fas fa-user-plus nav-link text-light" href="/users/sign_up"> Sign up</a></li>
+          <% end %>
+          <% if user_signed_in? %>
+          <a class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out"> Log out</a>
+          <% else %>
           <li><a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in"> Log in</a></li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -39,4 +51,15 @@
     <% end %>
     <%= yield %>
   </body>
+  
+<footer>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>
+</footer>
+  
 </html>

@@ -19,4 +19,7 @@ class BooksController < ApplicationController
   def destroy
   end
   
+  def edit
+  end
+   
 end
