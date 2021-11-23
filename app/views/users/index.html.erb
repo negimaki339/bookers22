@@ -1,17 +1,36 @@
-<h1>ここはユーザー一覧ページ</h1>
-
- <li>
-   <%= link_to "新規登録", new_user_registration_path %>
- </li>
- <div class="form-group">
-    <label for="book_title">Title</label>
-    <input class="form-control book_title" type="text" name="book[title]" id="book_title">
-  </div>
-  <div class="form-group">
-    <label for="book_opinion">Opinion</label>
-    <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
-  </div>
-  <div class="form-group">
-    <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
-  </div>
-  
+<div class="container">
+  <div class="row">
+   <div class="col-md-3">        
+    <%= render 'users/list', user: @users, book: @book %>
+   </div>
+     <div class="col-md-8 offset-md-1">
+      <table class="table table-hover table-inverse">
+       <thead>
+       　<h2>Users</h2>
+         
+          <tr>
+           <th>image</th>
+           <th>name</th>
+           <th></th>
+          </tr>
+         </thead>
+           <tbody>
+             <% @user.each do |user| %>
+             
+              <tr>
+               
+                <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></td>
+               
+               
+                <td><%= user.name %></td>
+               
+               
+                <td><%= link_to "show", user_path(user.id) %></td>
+               
+              </tr>
+            <% end %>
+           </tbody>  
+       </table>
+     </div>
+   </div>
+ </div>
